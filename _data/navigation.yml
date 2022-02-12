@@ -1,0 +1,35 @@
+# main links
+main:
+   - title: "소개"
+     url: /about/
+   - title: "카테고리"
+     url: /categories/
+  #  - title: "About"
+  #    url: https://mmistakes.github.io/minimal-mistakes/about/
+  # - title: "Sample Posts"
+  #   url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+sidebar-contents:
+  - title: "Language"
+    children:
+     - title: "java"
+       url: /categories/#java
+    # - title: "test"
+    #   url: /categories/#test
+    # - title: "Tips"
+    #   url: /categories/#tips
+
+  - title: "Other"
+    children:
+     - title: "git"
+       url: /categories/#git
+#     - title: "test4"
+#       url: /categories/#test4
+#  - title: "is테스트"
+#    children:
+#     - title: "test5"
+#       url: /categories/#test5
