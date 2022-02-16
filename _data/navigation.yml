@@ -27,8 +27,8 @@ sidebar-contents:
     children:
      - title: "git"
        url: /categories/#git
-#     - title: "test4"
-#       url: /categories/#test4
+     - title: "markdown"
+       url: /categories/#markdown
 #  - title: "is테스트"
 #    children:
 #     - title: "test5"
