@@ -23,6 +23,11 @@ sidebar-contents:
     # - title: "Tips"
     #   url: /categories/#tips
 
+  - title: "Database"
+    children:
+    - title: "MySQL"
+      url: /categories/#mysql
+
   - title: "Other"
     children:
      - title: "git"
@@ -31,7 +36,4 @@ sidebar-contents:
        url: /categories/#markdown
      - title: "html"
        url: /categories/#html
-#  - title: "is테스트"
-#    children:
-#     - title: "test5"
-#       url: /categories/#test5
+
