@@ -56,6 +56,8 @@ CREATE TABLE studenttbl(
 - FOREIGN KEY : 하나의 테이블을 다른 테이블과 연결할 때 사용함.  
 - DEFAULT : 기본값.  
 
+<br>  
+
 ### USE  
 
 > 설명  
@@ -90,6 +92,8 @@ SHOW TABLES;
 SHOW TABLE STATUS;  
 ```  
 
+<br>  
+
 ### DESCRIBE, EXPLAIN  
 
 > 설명  
@@ -102,12 +106,14 @@ SHOW TABLE STATUS;
  EXPLAIN [테이블 이름];
 ```  
 
+<br>  
+
 ### INSERT  
 
 > 설명  
 
 - 테이블 데이터를 삽입합니다.  
-- 작성하는 순서대로 컬럼에 데이터가 삽입됩니다. (id 는 숫자를자동으로 올리게 설정되어있으니 id는 수정하지 않음)  
+- 작성하는 순서대로 컬럼에 데이터가 삽입됩니다.  
 - 컬럼의 순서가 바뀌면 값도 컬럼의 순서에 맞게 바뀌어야 합니다.  
 
 ```sql
@@ -130,6 +136,8 @@ INSERT studenttbl(id, gender, phone, name, birth, kor, eng, mat)
 VALUES (NULL,'F','010-7458-2345','조성현','1989-02-10',25,45,50);
 ```  
 
+<br>  
+
 ### SELECT  
 
 > 설명  
@@ -151,7 +159,7 @@ SELECT * FROM [데이터베이스명].[테이블명];
 > 예시  
 
 ```sql
--- id, name, birth 만 결과로 나옴
+-- id, name, birth 순서로 결과가 나옴
 SELECT id, name, birth FROM studenttbl;  
 
 -- 테이블의 모든 데이터가 결과로 나옴
@@ -160,6 +168,8 @@ SELECT * FROM studenttbl;
 -- 다른 데이터베이스에 있는 테이블의 데이터 확인
 SELECT * FROM studentdb.studenttbl;
 ```
+
+<br>  
 
 ### WHERE  
 
@@ -178,6 +188,8 @@ SELECT * FROM [테이블 이름] WHERE [조건식];
 SELECT * FROM studenttbl WHERE gender = 'M';
 ```  
 
+<br>  
+
 ### ALTER  
 
 > 설명  
@@ -189,10 +201,10 @@ SELECT * FROM studenttbl WHERE gender = 'M';
 ALTER TABLE [기존테이블 이름] RENAME [변경테이블 이름];
 
 -- 컬럼 추가
-ALTER TABLE [테이블 이름] ADD COLUMN 컬러명 데이터타입 컬럼조건;
+ALTER TABLE [테이블 이름] ADD COLUMN [컬러명] [데이터타입] [컬럼조건];
 
 -- 컬럼 타입 변경
-ALTER TABLE [테이블 이름] MODIFY COLUMN 컬럼명 데이터타입;
+ALTER TABLE [테이블 이름] MODIFY COLUMN [컬럼명] [데이터타입];
 
 -- 컬럼명 변경
 ALTER TABLE [테이블 이름] CHANGE COLUMN [변경 전 컬럼명] [변경 후 컬럼명] [데이터타입];
@@ -206,6 +218,8 @@ ALTER TABLE [테이블 이름] ADD PRIMARY KEY (Key [설정 컬럼명1], Key [�
 -- Primary Key 삭제
 ALTER TABLE [테이블 이름] DROP PRIMARY KEY;
 ```  
+
+<br>  
 
 ### UPDATE  
 
@@ -228,6 +242,8 @@ UPDATE studenttbl SET kor = 80, eng = 60 WHERE name='김성근';
 -- Safe Updates 해제 쿼리
 SET sql_safe_updates = 0;
 ```  
+
+<br>  
 
 ### DELETE, DROP  
 
