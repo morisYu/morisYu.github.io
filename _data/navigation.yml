@@ -36,6 +36,6 @@ sidebar-contents:
        url: /categories/#markdown
      - title: "html"
        url: /categories/#html
-    # - title: "Linux"
-    #    url: /categories/#linux
+     - title: "Linux"
+       url: /categories/#linux
 
