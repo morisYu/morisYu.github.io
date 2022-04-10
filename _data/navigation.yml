@@ -27,6 +27,8 @@ sidebar-contents:
     children:
     - title: "MySQL"
       url: /categories/#mysql
+    - title: "database"
+      url: /categories/#database
 
   - title: "Other"
     children:
