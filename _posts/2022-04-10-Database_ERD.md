@@ -49,27 +49,27 @@ toc_sticky: true
 
 > 표기법  
 
-1. 하나의 A(부모)는 하나의 B(자식)로 구성되어 있음. B(자식)는 반드시 하나가 있어야 함.  
+- 하나의 A(부모)는 하나의 B(자식)로 구성되어 있음. B(자식)는 반드시 하나가 있어야 함.  
 
 ![erd1](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd1.png?raw=true)  
 
-2. 하나의 A(부모)는 하나 이상의 B(자식)로 구성되어 있음.  
+- 하나의 A(부모)는 하나 이상의 B(자식)로 구성되어 있음.  
 
 ![erd2](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd2.png?raw=true)  
 
-3. 하나의 A(부모)는 하나 이하의 B(자식)로 구성되어 있음. B(자식)는 없을수도 있고, 하나가 있을수도 있음.  
+- 하나의 A(부모)는 하나 이하의 B(자식)로 구성되어 있음. B(자식)는 없을수도 있고, 하나가 있을수도 있음.  
 
 ![erd3](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd3.png?raw=true)  
 
-4. 하나의 A(부모)는 0 또는 하나 이상의 B(자식)로 구성되어 있음. B(자식)는 없을수도 있고, 여러개가 있을수도 있음.  
+- 하나의 A(부모)는 0 또는 하나 이상의 B(자식)로 구성되어 있음. B(자식)는 없을수도 있고, 여러개가 있을수도 있음.  
 
 ![erd4](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd4.png?raw=true)
 
-5. 실선은 A(부모)의 기본키를 B(자식)이 가지고 있으며, 이를 기본키로 사용함.  
+- 실선은 A(부모)의 기본키를 B(자식)이 가지고 있으며, 이를 기본키로 사용함.  
 
 ![erd5](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd5.png?raw=true)  
 
-6. 점선은 A(부모)의 기본키를 B(자식)이 가지고 있지만, 이를 기본키로 사용하지 않음.
+- 점선은 A(부모)의 기본키를 B(자식)이 가지고 있지만, 이를 기본키로 사용하지 않음.
 
 ![erd6](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/erd6.png?raw=true)  
 
@@ -118,7 +118,7 @@ toc_sticky: true
 2. 한 명의 `작성자`는 여러 개의 `게시글`을 작성하거나 작성하지 않을 수 있습니다.  
 3. 하나의 `게시글`에는 `댓글`이 여러 개가 있거나 없을 수 있습니다.  
 4. 한 명의 `작성자`는 여러 개의 `댓글`을 작성하거나 작성하지 않을 수 있습니다.  
-5. 한 명의 `작성자`는 `휴면자`일 수도 있고 아닐수도 있습니다.  
+5. 한 명의 `작성자`는 `휴면계정`이 없거나(사용계정), 하나가 있을 수 있습니다.  
 
 <br>
 
@@ -132,33 +132,33 @@ toc_sticky: true
 
 <br>
 
-1. `작성자` 엔티티의 속성 확인  
+- `작성자` 엔티티의 속성 확인  
 
 ![author_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/author_diagram.png?raw=true)   
 
 <br>  
 
-2. `게시글` 엔티티의 속성 확인  
+- `게시글` 엔티티의 속성 확인  
 
 ![topic_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/topic_diagram.png?raw=true)  
 
 <br>  
 
-3. `댓글` 엔티티의 속성 확인  
+- `댓글` 엔티티의 속성 확인  
 
 ![comment_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/comment_diagram.png?raw=true)   
 
 <br>  
 
-4. `휴면자` 엔티티의 속성 확인  
+- `휴면계정` 엔티티의 속성 확인  
 
 ![dormant_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/dormant_diagram.png?raw=true)  
 
 <br>  
 
-5. 전체 엔티티의 관계 확인  
+- 전체 엔티티의 관계 확인  
 
-![relation_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/relation_diagram.png?raw=true)  
+![total_diagram](https://github.com/morisYu/morisyu.github.io/blob/master/assets/images/database/total_diagram.png?raw=true)    
 
 <br>  
 
@@ -173,7 +173,7 @@ toc_sticky: true
 
 
 
-<br><br><br>
+<br><br><br>  
 
 # <strong>Reference</strong>  
 
