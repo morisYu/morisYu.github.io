@@ -3,7 +3,7 @@ published: true
 layout: single
 title: "[Java] 리스트(List) 컬렉션"
 subtitle: 
-categories: [mysql]
+categories: [java]
 tag: [java, arraylist, linkedlist, vector, collection]
 toc: true
 toc_sticky: true
