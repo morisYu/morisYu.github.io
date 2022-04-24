@@ -40,4 +40,6 @@ sidebar-contents:
        url: /categories/#html
      - title: "Linux"
        url: /categories/#linux
+     - title: "Tools"
+       url: /categories/#tools
 
