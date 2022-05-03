@@ -17,7 +17,7 @@ toc_sticky: true
 
 - 작업의 단위는 질의어 한 문장만을 의미하는 것이 아니라, 많은 질의어들을 사람이 정하는 기준에 따라 정하는 것을 의미합니다.  
 
-- UPDATE또는 DELETE를 하는 경우 실수로 WHERE절을 쓰지 않고 실행을 하면 테이블에 있는 칼럼의 데이터가 모두 바뀌거나 삭제가 되는데 이런 위험성이 있는 작업의 경우 트랜잭션 안에서 실행하게 되면 최종 확인 후 Commit 또는 Rollback으로 안정적인 데이터베이스 작업이 가능합니다.  
+- UPDATE또는 DELETE를 하는 경우 실수로 WHERE절을 쓰지 않고 실행하면 테이블에 있는 칼럼의 데이터가 모두 바뀌거나 삭제가 되는데 이런 위험성이 있는 작업의 경우 트랜잭션 안에서 실행하게 되면 최종 확인 후 Commit 또는 Rollback으로 안정적인 데이터베이스 작업이 가능합니다.  
 
 <br>  
 
@@ -87,25 +87,25 @@ toc_sticky: true
 
 <br>
 
-## 트랜잭션 사용예제  
+## 트랜잭션 사용예제(MySQL)  
 
-- 은행 계좌에서 이체를 할 때 'A'라는 사람이 'B'에게 돈을 송금할 때 중간에 실수를 해서 'B'의 계좌에 잘못된 금액을 입금하는 경우가 생길 수 있습니다. 이럴 때 트랜잭션 내에서 계좌 이체 작업을 실행하면 중간에 오류가 발생한 경우 송금하기 전 상태로 되돌릴 수 있습니다.  
+- 은행 계좌에서 'A'라는 사람이 'B'에게 돈을 이체하는 상황에서 쿼리문 중간에 실수로 'B'의 계좌에 잘못된 금액을 입금하는 경우가 생길 수 있습니다. 이럴 때 트랜잭션 내에서 계좌 이체 작업을 실행하면 중간에 오류가 발생한 경우 이체하기 전 상태로 되돌릴 수 있습니다.  
 
 > 트랜잭션 사용 전  
 
-- 'A'계좌에서 'B'계좌로 송금 시 중간에 오류가 발생하게되면 다시 원래상태로 돌려놓아야 하지만 복구하기가 상당히 어렵습니다.  
+- 'A'계좌에서 'B'계좌로 이체 시 중간에 오류가 발생하게되면 다시 원래상태로 돌려놓아야 하지만 복구하기가 상당히 어렵습니다.  
 
 ```sql
 -- 계좌 테이블 생성
 CREATE TABLE IF NOT EXISTS bank_account(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(10) NOT NULL,
     amount INT NOT NULL
 );
 
--- 송금내역 테이블 생성
+-- 이체내역 테이블 생성
 CREATE TABLE IF NOT EXISTS bank_history(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     from_name VARCHAR(10) NOT NULL,
     to_name VARCHAR(10) NOT NULL,
     amount INT NOT NULL,
@@ -116,23 +116,24 @@ CREATE TABLE IF NOT EXISTS bank_history(
 INSERT INTO bank_account(name, amount) VALUES('A', 100000);
 INSERT INTO bank_account(name, amount) VALUES('B', 50000);
 
--- 'A'가 'B'에게 5000원을 송금하는 과장
+/* 'A'가 'B'에게 5000원을 이체하는 과정 */
 -- 1. 'A'의 계좌 잔액에서 5000원을 차감
 UPDATE bank_account
-	SET amount = amount - 5000
+    SET amount = amount - 5000
 WHERE name = 'A';
 
 -- 2. 실수로 'B'에게 50000원을 추가(오류 발생)
 UPDATE bank_account
-	SET amount = amount + 50000
+    SET amount = amount + 50000
 WHERE name = 'B';
 
--- 중간에 'B'는 잘못된 금액이 추가되었지만 송금내역은 5000원 송금으로 기록됨
+-- 중간에 'B'는 잘못된 금액이 추가되었지만 이체내역은 5000원으로 기록됨
+-- 이체내역 테이블만 봤을 때는 어느 부분에 문제가 발생했는지 알기 어려움
 INSERT INTO bank_history(from_name, to_name, amount, transfer_date)
 VALUES('A', 'B', 5000, now());
 
 -- 'B' 에 잘못된 금액이 UPDATE 되었지만 복구하기 어려움
-
+SELECT * FROM bank_account;
 ```  
 
 <br>  
@@ -144,24 +145,29 @@ VALUES('A', 'B', 5000, now());
 - 작업 중간에 오류가 있더라도 최종 확인 후 이전으로 되돌릴 수 있습니다.  
 
 ```sql
+-- 트랜잭션 시작
 START TRANSACTION;
--- 'A'가 'B'에게 5000원을 송금하는 과장
+
+/* 'A'가 'B'에게 5000원을 이체하는 과정 */
 -- 1. 'A'의 계좌 잔액에서 5000원을 차감
 UPDATE bank_account
-	SET amount = amount - 5000
+    SET amount = amount - 5000
 WHERE name = 'A';
 
 -- 2. 실수로 'B'에게 50000원을 추가(오류 발생)
 UPDATE bank_account
-	SET amount = amount + 50000
+    SET amount = amount + 50000
 WHERE name = 'B';
 
--- 중간에 'B'는 잘못된 금액이 추가되었지만 송금내역은 5000원 송금으로 기록됨
+-- 중간에 'B'는 잘못된 금액이 추가되었지만 이체내역은 5000원으로 기록됨
 INSERT INTO bank_history(from_name, to_name, amount, transfer_date)
 VALUES('A', 'B', 5000, now());
 
 -- 실행결과를 확인 후 오류를 발견하게되면 Rollback으로 다시 되돌릴 수 있음
 ROLLBACK;
+
+-- 트랜잭션 작업 이전으로 되돌아갔음을 확인
+SELECT * FROM bank_account;
 ```  
 
 <br>  
