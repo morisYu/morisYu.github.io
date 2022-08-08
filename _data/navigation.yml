@@ -42,4 +42,6 @@ sidebar-contents:
        url: /categories/#linux
      - title: "Tools"
        url: /categories/#tools
+     - title: "UV system"
+       url: /categories/#uv
 
